@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-coupons',
   imports: [],
   templateUrl: './coupons.component.html',
-  styleUrl: './coupons.component.css'
+  styleUrl: './coupons.component.scss'
 })
 export class CouponsComponent {
 

@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter, OnInit, HostListener } from '@angular/
 import { navBarData } from './nav-data';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { RouterLink, RouterModule } from '@angular/router';
+import { animate, keyframes, style, transition, trigger } from '@angular/animations';
 
 interface SideNavToggle {
   screenWidth: number;
@@ -12,7 +13,34 @@ interface SideNavToggle {
   selector: 'app-sidenav',
   imports: [ NgFor, RouterLink, CommonModule, NgIf, RouterModule],
   templateUrl: './sidenav.component.html',
-  styleUrl: './sidenav.component.scss'
+  styleUrl: './sidenav.component.scss',
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0}),
+        animate('350ms', 
+          style({ opacity: 1})
+        )
+      ]),
+      transition(':leave', [
+        style({opacity: 1}),
+        animate('350ms', 
+          style({opacity: 0})
+        )
+      ])
+    ]),
+
+    trigger('rotate', [
+      transition(':enter', [
+        animate('1000ms', 
+          keyframes([
+            style({ transform: 'rotate(0deg)', offset: '0'}),
+            style({ transform: 'rotate(4turn)', offset: '1'})
+          ])
+        )
+      ])
+    ])
+  ]
 })
 export class SidenavComponent implements OnInit{
 
