@@ -1,0 +1,17 @@
+.app-container {
+    height: 100vh;
+  }
+  
+  mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  input {
+    width: 300px;
+  }
+  
