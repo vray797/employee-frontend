@@ -4,6 +4,7 @@ import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { RouterLink, RouterModule } from '@angular/router';
 import { animate, keyframes, style, transition, trigger } from '@angular/animations';
 import { SublevelMenuComponent } from "./sublevel-menu.component";
+import { INavBarData } from './helper';
 
 interface SideNavToggle {
   screenWidth: number;
@@ -45,11 +46,14 @@ interface SideNavToggle {
 })
 export class SidenavComponent implements OnInit{
 
+  constructor() {}
+
   @Output() onToggleSideNav: EventEmitter<SideNavToggle> = new EventEmitter();
 
   collapsed = false;
   public navData = navBarData
   screenWidth = 0;
+  multiple: boolean = false;
 
   @HostListener('window:resize', ['$event'])
   onResize() {
@@ -61,7 +65,7 @@ export class SidenavComponent implements OnInit{
   }
 
   ngOnInit(): void {
-      this.screenWidth = window.innerWidth;
+    this.screenWidth = window.innerWidth;
   }
 
   toggleCollapse() {
@@ -74,4 +78,14 @@ export class SidenavComponent implements OnInit{
     this.onToggleSideNav.emit({ collapsed: this.collapsed, screenWidth: this.screenWidth });
   }
 
+  handleClick(item: INavBarData): void {
+    if (!this.multiple) {
+      for(let modelItem of this.navData) {
+        if (item !== modelItem && modelItem.expanded) {
+          modelItem.expanded = false;
+        }
+      }
+    }
+    item.expanded = !item.expanded;
+  }
 }

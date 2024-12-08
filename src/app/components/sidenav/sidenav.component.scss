@@ -78,6 +78,7 @@
             border-radius: 0.625rem;
             transition: all .3s ease;
 
+            .menu-collapsed-icon,
             .sidenav-link-icon {
                 font-size: 22px;
                 width: 2rem;
@@ -89,6 +90,16 @@
             .sidenav-link-text {
                 margin-left: 1.5rem;
             }
+
+            .sidenav-link-text:hover {
+                background-color: #fff;
+                color: #000;
+
+                .menu-collapsed-icon {
+                    color: #000;
+
+                }
+            }
         }
     }
 
@@ -96,6 +107,10 @@
         .sidenav-nav-link {
             background-color: #fff;
             color: #000;
+
+            .menu-collapsed-icon {
+                color: #000;
+            }
         }
     }
 }
@@ -103,8 +118,51 @@
 .active {
     background-color: #fff;
 
+    .menu-collapsed-icon,
     .sidenav-link-icon,
     .sidenav-link-text {
         color: #000;
+    }
+}
+
+.menu-collapsed-icon {
+    font-size: 25px;
+    width: 2rem;
+    min-width: 2rem;
+    margin: auto 0.5rem auto auto;
+    text-align: center;
+    color: #f3f3f3;
+}
+
+.sublevel-nav {
+    list-style: none;
+    margin-left: 10px;
+
+    .sublevel-nav-item {
+        .sublevel-nav-link {
+            display: flex;
+            align-items: center;
+            height: 3rem;
+            color: #898989;
+            text-decoration: none;
+            border-radius: 0.625rem;
+            transition: all .3s ease;
+
+            .sublevel-link-icon {
+                font-size: 4px;
+                width: 2rem;
+                min-width: 2rem;
+                margin: 0 0.5rem;
+                text-align: center;
+            }
+
+            .sublevel-link-text {
+                margin-left: 0.8rem;
+            }
+        }
+
+        .sublevel-nav-link:hover {
+            color: #fff;
+        }
     }
 }
