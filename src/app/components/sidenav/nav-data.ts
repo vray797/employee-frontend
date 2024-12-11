@@ -18,7 +18,21 @@ export const navBarData: INavBarData[] = [
                 items: [
                     {
                         routeLink: 'products/level2.1',
-                        label: 'Level 2.1'
+                        label: 'Level 2.1',
+                        items: [
+                            {
+                                routeLink: 'products/level2.1/2.1.1',
+                                label: 'Level 2.2.1'
+                            }
+                        ]
+                    }, 
+                    {
+                        routeLink: 'products/level2.2',
+                        label: 'Level 2.2'
+                    },
+                    {
+                        routeLink: 'products/level2.3',
+                        label: 'Level 2.3'
                     }
                 ]
             }
@@ -62,6 +76,17 @@ export const navBarData: INavBarData[] = [
     {
         routeLink: 'settings',
         icon: 'fal fa-cog',
-        label: 'Settings'
+        label: 'Settings',
+        expanded: true,
+        items: [
+            {
+                routeLink: 'settings/profile',
+                label: 'Profile'
+            },
+            {
+                routeLink: 'settings/customize',
+                label: 'Customize'
+            }
+        ]
     },
 ]

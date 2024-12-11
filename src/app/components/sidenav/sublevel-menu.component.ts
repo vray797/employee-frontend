@@ -16,7 +16,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
         *ngIf="item.items && item.items.length > 0">
           <i class="sublevel-link-icon fa fa-circle"></i>
           <span class="sublevel-link-text" *ngIf="collapsed">{{item.label}}</span>
-          <i *ngIf="item.items && collapsed" class="menu-collapsed-icon" [ngClass]="!item.expanded ? 'fal fa-angle-right' : 'fal fa-angle-down'"]>
+          <i *ngIf="item.items && collapsed" class="menu-collapsed-icon" [ngClass]="!item.expanded ? 'fal fa-angle-right' : 'fal fa-angle-down'">
           </i>
         </a>
 
@@ -30,7 +30,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
         </a>
 
         <div *ngIf="item.items && item.items.length > 0">
-          <app-sublevel-menu [collapsed]="collapsed" [multiple]="multiple" [expanded]="item.expanded"></app-sublevel-menu>
+          <app-sublevel-menu [data]="item" [collapsed]="collapsed" [multiple]="multiple" [expanded]="item.expanded"></app-sublevel-menu>
         </div>
       </li>
     </ul>
