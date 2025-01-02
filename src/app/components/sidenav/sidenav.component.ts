@@ -1,10 +1,10 @@
 import { Component, Output, EventEmitter, OnInit, HostListener } from '@angular/core';
 import { navBarData } from './nav-data';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
-import { RouterLink, RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { animate, keyframes, style, transition, trigger } from '@angular/animations';
 import { SublevelMenuComponent } from "./sublevel-menu.component";
-import { INavBarData } from './helper';
+import { fadeInOut, INavBarData } from './helper';
 
 interface SideNavToggle {
   screenWidth: number;
@@ -17,21 +17,7 @@ interface SideNavToggle {
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.scss',
   animations: [
-    trigger('fadeInOut', [
-      transition(':enter', [
-        style({ opacity: 0}),
-        animate('350ms', 
-          style({ opacity: 1})
-        )
-      ]),
-      transition(':leave', [
-        style({opacity: 1}),
-        animate('350ms', 
-          style({opacity: 0})
-        )
-      ])
-    ]),
-
+    fadeInOut,
     trigger('rotate', [
       transition(':enter', [
         animate('1000ms', 
@@ -46,14 +32,14 @@ interface SideNavToggle {
 })
 export class SidenavComponent implements OnInit{
 
-  constructor() {}
+  constructor(public router: Router) {}
 
   @Output() onToggleSideNav: EventEmitter<SideNavToggle> = new EventEmitter();
 
   collapsed = false;
   public navData = navBarData
   screenWidth = 0;
-  multiple: boolean = false;
+  multiple: boolean = true;
 
   @HostListener('window:resize', ['$event'])
   onResize() {
@@ -79,6 +65,15 @@ export class SidenavComponent implements OnInit{
   }
 
   handleClick(item: INavBarData): void {
+    this.shrinkItem(item)
+    item.expanded = !item.expanded;
+  }
+
+  getActiveClass(data: INavBarData) {
+    return this.router.url.includes(data.routeLink) ? 'active' : ''
+  }
+
+  shrinkItem(item: INavBarData): void {
     if (!this.multiple) {
       for(let modelItem of this.navData) {
         if (item !== modelItem && modelItem.expanded) {
@@ -86,6 +81,5 @@ export class SidenavComponent implements OnInit{
         }
       }
     }
-    item.expanded = !item.expanded;
   }
 }
