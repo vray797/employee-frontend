@@ -1,0 +1,16 @@
+{
+  "routes": {
+    "/": {},
+    "/coupon": {},
+    "/coupon/create": {},
+    "/coupon/list": {},
+    "/dashboard": {},
+    "/media": {},
+    "/pages": {},
+    "/products": {},
+    "/products/level3.1": {},
+    "/products/level3.2": {},
+    "/settings": {},
+    "/statistics": {}
+  }
+}
